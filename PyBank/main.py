@@ -72,5 +72,5 @@ print(output)
 
 
 # Write output to file (over-writes existing)
-with open("output.txt", "w") as f:
+with open("analysis/output.txt", "w") as f:
     print(output, file=f)
