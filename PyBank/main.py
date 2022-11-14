@@ -1,6 +1,6 @@
 # Financial Records Analysis Code
 # Assumptions:
-#   1. Input file is in the same directory
+#   1. Input file is in a /Resources folder in the same directory
 #   2. Data is in chronological order
 #   3. There are no identical increase or decrease values
 # View Readme.md for Additional details
@@ -14,16 +14,10 @@ import csv
 
 fpath = os.path.join("Resources","budget_data.csv") # write resource file path
 
-# print (fpath) # Check Path
-
 # Open file to run required operations
 with open(fpath) as file:
     budget = csv.reader(file, delimiter=',')  
     budget_header = next(budget)
-
-    # Check header
-    # print(f"Budget Header: {budget_header}") 
-
     data = [[row[0], int(row[1])] for row in budget]
 
 profit = [e[1] for e in data]
@@ -38,7 +32,7 @@ for e1, e2 in zip(profit[1:],profit[:-1]):
     chg = e1 - e2
     profit_chg.append(chg)
             
-    # Calculate greatest increase and greatest decrease
+# Calculate greatest increase and greatest decrease
 if max(profit_chg) > 0:
     max_inc = max(profit_chg)
     date_inc = data[profit_chg.index(max_inc)+1][0]
